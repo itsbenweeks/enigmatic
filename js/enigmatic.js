@@ -7,6 +7,7 @@ var player;
 function onYouTubePlayerAPIReady() {
   enigma = new YT.Player(
     'enigma', {
+      height: '30',
       playerVars: {
         'autoplay': 1,
         'controls': 1,
@@ -15,7 +16,8 @@ function onYouTubePlayerAPIReady() {
         },
       videoId: 'R8iwzojMkIs',
       events: {
-        'onReady': onEnigmaReady
+        'onReady': onEnigmaReady,
+        'onStateChange': copyStates
         }
       }
     );
@@ -36,7 +38,36 @@ function onYouTubePlayerAPIReady() {
   }
 function onPlayerReady(event) {
   event.target.mute();
-  }
+}
+
+function copyStates(event) {
+  if (event.data == 0)
+    stopAll(event);
+  elseif (event.data == 1)
+    playAll(event);
+  elseif (event.data == 2)
+    pauseAll(event);
+  // else
+  //   pauseOther(event);
+
+}
+
+function stopAll(event){
+
+}
+
+function playAll(event){
+
+}
+
+function pauseAll(event){
+
+}
+
+function pauseOther(event){
+
+}
+
 function onEnigmaReady(event) {
   event.target.unmute();
-  }
+}
